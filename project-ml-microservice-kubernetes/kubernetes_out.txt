@@ -1,0 +1,17 @@
+(.devops) pouch@C02FR2VHML85 project-ml-microservice-kubernetes % kubectl get pod
+NAME                        READY   STATUS    RESTARTS   AGE
+ml-ms-k8-7477d7f7dc-zzdqd   1/1     Running   0          3m3s
+(.devops) pouch@C02FR2VHML85 project-ml-microservice-kubernetes % kubectl delete deploy ml-ms-k8
+deployment.apps "ml-ms-k8" deleted
+(.devops) pouch@C02FR2VHML85 project-ml-microservice-kubernetes % kubectl get pod
+No resources found in default namespace.
+(.devops) pouch@C02FR2VHML85 project-ml-microservice-kubernetes % ./run_kubernetes.sh 
+deployment.apps/ml-ms-k8 created
+NAME                        READY   STATUS              RESTARTS   AGE
+ml-ms-k8-7477d7f7dc-gbw89   0/1     ContainerCreating   0          0s
+Forwarding from 0.0.0.0:80 -> 80
+Handling connection for 80
+Handling connection for 80
+Handling connection for 80
+^C%                                                                                                                           
+(.devops) pouch@C02FR2VHML85 project-ml-microservice-kubernetes % 

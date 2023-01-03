@@ -5,11 +5,11 @@
 
 # Step 1:
 # Create dockerpath
-# dockerpath=<your docker ID/path>
+dockerpath=aasheesh123/udacity-ml-microservice-k8s:latest
 
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
 
 # Step 3:
-# Push image to a docker repository
+docker push aasheesh123/udacity-ml-microservice-k8s:latest
