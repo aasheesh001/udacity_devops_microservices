@@ -1,12 +1,5 @@
-# Template:
+# Build Status for Master branch
 [![aasheesh001](https://circleci.com/gh/aasheesh001/udacity_devops_microservices.svg?style=svg)](https://github.com/aasheesh001/udacity_devops_microservices/blob/master/README.md)
-
-# Example:
-[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs)
-
-# Example for specific branch:
-[![CircleCI](https://circleci.com/gh/circleci/circleci-docs/tree/teesloane-patch-5.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs/?branch=teesloane-patch-5)
-
 
 ## Project Summary
 The ultimate aim of the project is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. 
