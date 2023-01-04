@@ -19,31 +19,102 @@ This project contains various scripts mentioned below:
 ## Setting up the Environment
 
 * Create a virtualenv with Python 3.7 and activate it. Refer to this link for help on specifying the Python version in the virtualenv. 
-```bash
-python3 -m pip install --user virtualenv
-
-# You should have Python 3.7 available in your host. 
-# Check the Python path using `which python3`
-# Use a command similar to this one:
-
-python3 -m virtualenv --python=<path-to-Python3.7> .devops
-source .devops/bin/activate
 ```
-* Run `make install` to install the necessary dependencies
-
+python3 -m venv ~/.devops
+source ~/.devops/bin/activate
+# You should have python 3 installed on your machine
+```
+* Install the necessary dependencies using the make file, if you don't have make package installed, please install it using the appropriate package manager.
+```make install
+```
 * Install hadolint:
- brew install hadolint
+```#For Mac:
+brew install hadolint
+
+#For Windows:
+scoop install hadolint
+```
 
 * Run lint checks:
-make lint
+```make lint
+```
 
 ###### Install kubernetes locally
+```
+#For Mac:
 brew install --cask virtualbox
 brew install minikube
 
+### For Windows use these documentation: 
+## https://www.virtualbox.org/wiki/Downloads
+## https://minikube.sigs.k8s.io/docs/start/
+```
+###### Verify your installation
+```
+kubectl version
+docker --version
+```
+git clone https://github.com/udacity/DevOps_Microservices.git
 
-### Running `app.py` ###
+## Working steps
+* Clone the repository
+```git clone https://github.com/udacity/DevOps_Microservices.git
+```
 
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
+* Run the below command to create the docker image and run the app on docker
+```./run_docker.sh
+```
+
+* While the above command is running and you see that the app is up and running, use the below script to make predictions on another terminal:
+```./make_prediction.sh
+```
+* Once the prediction is complete press CTRL+D to exit from the first terminal
+
+* Deploy the image on Kubernetes using the below command:
+```./run_kubernetes.sh
+```
+* Use the same script to make predictions as used with docker.
+
+## How to Test locally without using script:
+
+* The Dockerfile is already completed, make necessary changes accordingly as per your requirements
+
+* Build the image:
+```docker build -t aasheesh123/udacity-ml-microservice-k8s:latest .
+```
+
+* You can find the image in your machine by using the below command:
+```docker image ls
+```
+
+* To run your image in a docker container and expose it on a local port use the below command:
+```docker run -p 80:80 aasheesh123/udacity-ml-microservice-k8s:latest
+```
+* You can now make the prediction using the script `make_prediction.sh`
+
+* The next steps are for Kubernetes deployment, you can deploy your image to a Kubernetes cluster using the below command:
+```
+#Used to start the minikube cluster
+minikube start    
+
+# Run the container
+dockerpath=aasheesh123/udacity-ml-microservice-k8s:latest
+kubectl create deploy ml-ms-k8 --image=$dockerpath
+
+# List your pods
+kubectl get pod
+
+# Once your pod is running export its name in an env variable
+podname=$(kubectl get pod | cut -d " " -f1 | grep ml-ms-k8)
+
+# Forward the container port to a host
+kubectl port-forward pod/$podname --address 0.0.0.0 80:80
+
+```
+* You can now make the prediction using the script `make_prediction.sh`
+
+* Once your testing is done make sure to destroy the pods and stop minikube
+```
+kubectl delete deploy ml-ms-k8 
+minikube stop
+```
