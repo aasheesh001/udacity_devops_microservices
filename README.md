@@ -1,8 +1,13 @@
 # Build Status for Master branch
 [![aasheesh001](https://circleci.com/gh/aasheesh001/udacity_devops_microservices.svg?style=svg)](https://github.com/aasheesh001/udacity_devops_microservices/blob/master/README.md)
 
+# Circle CI Badge:
+[![CircleCI](https://circleci.com/gh/aasheesh001/udacity_devops_microservices.svg?style=svg&circle-token=c6a406d14b321b92c9553b516c5dd8d9b3d02ba4)](https://github.com/aasheesh001/udacity_devops_microservices/blob/master/README.md)
+
 ## Project Summary
-The ultimate aim of the project is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. 
+* The ultimate aim of the project is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. 
+* This project uses a Flask application(python) which can be deployed on Docker and Kubernetes. 
+* Here we make use of several packages such as make, hadolint, minikube, virtualbox.
 
 ## Project Files
 
@@ -25,10 +30,12 @@ source ~/.devops/bin/activate
 # You should have python 3 installed on your machine
 ```
 * Install the necessary dependencies using the make file, if you don't have make package installed, please install it using the appropriate package manager.
-```make install
+```
+make install
 ```
 * Install hadolint:
-```#For Mac:
+```
+#For Mac:
 brew install hadolint
 
 #For Windows:
@@ -36,7 +43,8 @@ scoop install hadolint
 ```
 
 * Run lint checks:
-```make lint
+```
+make lint
 ```
 
 ###### Install kubernetes locally
@@ -54,24 +62,27 @@ brew install minikube
 kubectl version
 docker --version
 ```
-git clone https://github.com/udacity/DevOps_Microservices.git
 
 ## Working steps
 * Clone the repository
-```git clone https://github.com/udacity/DevOps_Microservices.git
+```
+git clone https://github.com/aasheesh001/udacity_devops_microservices.git
 ```
 
 * Run the below command to create the docker image and run the app on docker
-```./run_docker.sh
+```
+./run_docker.sh
 ```
 
 * While the above command is running and you see that the app is up and running, use the below script to make predictions on another terminal:
-```./make_prediction.sh
+```
+./make_prediction.sh
 ```
 * Once the prediction is complete press CTRL+D to exit from the first terminal
 
 * Deploy the image on Kubernetes using the below command:
-```./run_kubernetes.sh
+```
+./run_kubernetes.sh
 ```
 * Use the same script to make predictions as used with docker.
 
@@ -80,15 +91,18 @@ git clone https://github.com/udacity/DevOps_Microservices.git
 * The Dockerfile is already completed, make necessary changes accordingly as per your requirements
 
 * Build the image:
-```docker build -t aasheesh123/udacity-ml-microservice-k8s:latest .
+```
+docker build -t aasheesh123/udacity-ml-microservice-k8s:latest .
 ```
 
 * You can find the image in your machine by using the below command:
-```docker image ls
+```
+docker image ls
 ```
 
 * To run your image in a docker container and expose it on a local port use the below command:
-```docker run -p 80:80 aasheesh123/udacity-ml-microservice-k8s:latest
+```
+docker run -p 80:80 aasheesh123/udacity-ml-microservice-k8s:latest
 ```
 * You can now make the prediction using the script `make_prediction.sh`
 
