@@ -12,8 +12,9 @@ kubectl create deploy ml-ms-k8 --image=$dockerpath
 
 # Step 3:
 kubectl get pod
+sleep 20
+kubectl get pod
 podname=$(kubectl get pod | cut -d " " -f1 | grep ml-ms-k8)
-sleep 60
 
 # Step 4:
 # Forward the container port to a host
